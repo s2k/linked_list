@@ -10,7 +10,6 @@ module LinkedList
   # next element, available via @next (or @succ).
   #
   class Node
-
     attr_accessor :value, :next
 
     def initialize(value = nil)
@@ -21,6 +20,6 @@ module LinkedList
       self.next = node
       node
     end
-    alias :<< :append
+    alias << append
   end
 end

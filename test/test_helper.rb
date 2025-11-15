@@ -1,6 +1,4 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-
-require "linked_list"
+require_relative "../lib/linked_list"
 require "minitest/autorun"

@@ -10,6 +10,13 @@ module LinkedList
   # next element, available via @next (or @succ).
   #
   class Node
+
+    attr_reader :value
+    def initialize(value = nil)
+      @value = value
+    end
+
     def next; end
+
   end
 end

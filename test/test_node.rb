@@ -42,6 +42,13 @@ class TestNode < Minitest::Test
     assert_equal :other, root.next.value
   end
 
+  def test_succ_also_returns_following_element
+    root = Node.new(:root)
+    root << Node.new << Node.new(:foo)
+
+    assert_equal :foo, root.succ.next.value
+  end
+
   def test_append_also_set_next_element
     root = Node.new(:foo)
     new_node = Node.new(:other)
@@ -66,5 +73,51 @@ class TestNode < Minitest::Test
 
     assert_equal :other, root.next.value
     assert_equal 42, root.next.next.value
+  end
+
+  def test_insert_after_in_the_middle
+    root = Node.new(:root)
+    initial_second = Node.new(:second)
+    root << initial_second
+    root.insert_after Node.new(:new_element)
+
+    assert_equal :root, root.value
+    assert_equal :new_element, root.next.value
+    assert_equal :second, root.next.next.value
+  end
+
+  def test_insert_after_at_the_end
+    root = Node.new(:root)
+    root << Node.new(:second)
+    root.next.insert_after Node.new(:new_element)
+
+    assert_equal :root, root.value
+    assert_equal :second, root.next.value
+    assert_equal :new_element, root.next.next.value
+  end
+
+  def test_can_count_follower_nodes
+    root = Node.new(:root)
+    current = root
+    follower_count = rand(3..11000)
+    follower_count.times do |i|
+      current << Node.new(i)
+      current = current.next
+    end
+
+    assert_equal follower_count + 1, root.size
+  end
+
+  def test_empty_list_converts_to_empty_array
+    root = Node.new
+
+    assert_equal [], root.to_a
+  end
+
+  def test_can_convert_non_empty_list_to_array
+    root = Node.new(0)
+    root << Node.new(1) << Node.new(2) << Node.new(3)
+
+    assert_equal [0, 1, 2, 3], root.to_a
   end
 end

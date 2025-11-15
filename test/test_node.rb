@@ -24,4 +24,21 @@ class TestNode < Minitest::Test
   def test_init_new_node_with_value
     assert_equal :foo, Node.new(:foo).value
   end
+
+  def test_can_change_node_value
+    node = Node.new(:foo)
+
+    node.value = :other
+
+    assert_equal :other, node.value
+  end
+
+  def test_can_set_successor
+    root = Node.new(:foo)
+    new_node = Node.new(:other)
+
+    root.next = new_node
+
+    assert_equal :other, root.next.value
+  end
 end

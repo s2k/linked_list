@@ -11,12 +11,10 @@ module LinkedList
   #
   class Node
 
-    attr_reader :value
+    attr_accessor :value, :next
+
     def initialize(value = nil)
       @value = value
     end
-
-    def next; end
-
   end
 end

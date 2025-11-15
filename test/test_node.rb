@@ -41,4 +41,30 @@ class TestNode < Minitest::Test
 
     assert_equal :other, root.next.value
   end
+
+  def test_append_also_set_next_element
+    root = Node.new(:foo)
+    new_node = Node.new(:other)
+    root.append new_node
+
+    assert_equal :other, root.next.value
+  end
+
+  def test_lessless_also_appends_node
+    root = Node.new(:foo)
+    new_node = Node.new(:other)
+    root << new_node << Node.new(:wahoodie)
+
+    assert_equal :other, root.next.value
+    assert_equal :wahoodie, root.next.next.value
+  end
+
+  def test_can_chain_append_calls
+    root = Node.new(:foo)
+    new_node = Node.new(:other)
+    root.append(new_node).append(Node.new(42))
+
+    assert_equal :other, root.next.value
+    assert_equal 42, root.next.next.value
+  end
 end

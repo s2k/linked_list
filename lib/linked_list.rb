@@ -16,5 +16,11 @@ module LinkedList
     def initialize(value = nil)
       @value = value
     end
+
+    def append(node)
+      self.next = node
+      node
+    end
+    alias :<< :append
   end
 end

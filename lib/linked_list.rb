@@ -32,12 +32,13 @@ module LinkedList
     def size
       count = 1
       curr = self
-      count += 1 while curr = curr.next
+      count += 1 while (curr = curr.next)
       count
     end
 
     def to_a
       return [] if value.nil?
+
       res = []
       current = self
       loop do

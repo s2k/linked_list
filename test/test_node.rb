@@ -99,7 +99,7 @@ class TestNode < Minitest::Test
   def test_can_count_follower_nodes
     root = Node.new(:root)
     current = root
-    follower_count = rand(3..11000)
+    follower_count = rand(3..11_000)
     follower_count.times do |i|
       current << Node.new(i)
       current = current.next
@@ -111,7 +111,7 @@ class TestNode < Minitest::Test
   def test_empty_list_converts_to_empty_array
     root = Node.new
 
-    assert_equal [], root.to_a
+    assert_empty root.to_a
   end
 
   def test_can_convert_non_empty_list_to_array

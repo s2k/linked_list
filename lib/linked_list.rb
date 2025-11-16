@@ -2,6 +2,8 @@
 
 require_relative "linked_list/version"
 
+# Provide a name space for linked lists
+#
 module LinkedList
   class Error < StandardError; end
 
@@ -13,6 +15,7 @@ module LinkedList
     attr_accessor :value, :next
 
     alias succ next
+
     def initialize(value = nil)
       @value = value
     end
@@ -26,12 +29,12 @@ module LinkedList
 
     def insert_after(other)
       other.next = self.next
-      self.next = other
+      self.next  = other
     end
 
     def size
       count = 1
-      curr = self
+      curr  = self
       count += 1 while (curr = curr.next)
       count
     end
@@ -39,14 +42,21 @@ module LinkedList
     def to_a
       return [] if value.nil?
 
-      res = []
+      res     = []
       current = self
-      loop do
+      until current.nil?
         res << current.value
         current = current.next
-        break if current.nil?
       end
       res
+    end
+
+    def each
+      current = self
+      until current.nil?
+        yield current
+        current = current.next
+      end
     end
   end
 end

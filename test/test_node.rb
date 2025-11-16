@@ -120,4 +120,15 @@ class TestNode < Minitest::Test
 
     assert_equal [0, 1, 2, 3], root.to_a
   end
+
+  def test_each_yields_elements_in_list
+    root = Node.new(0)
+    root << Node.new(1) << Node.new(2) << Node.new(3)
+
+    idx = 0
+    root.each do |element|
+      assert_equal idx, element.value
+      idx += 1
+    end
+  end
 end
